@@ -47,7 +47,7 @@ const Machinehealth = () => {
       //   var mode="0";
       // }
       console.log(url,technique,mode);
-      const response = await fetch('https://ad0b00ef-3f00-4cb3-acce-aa6c28cbd862-00-xykag7b1y2nk.picard.replit.dev:5000/magnify', {
+      const response = await fetch('https://6547-2409-4056-209e-aad9-80e1-7b02-a8df-ec63.ngrok-free.app/upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -121,7 +121,7 @@ const Machinehealth = () => {
   }, []);
 
   useEffect(() => {
-    const socket = io('https://d9f0-2409-40d7-7-598-e4d1-9e10-abe6-878e.ngrok-free.app', {
+    const socket = io('https://6547-2409-4056-209e-aad9-80e1-7b02-a8df-ec63.ngrok-free.app', {
   extraHeaders: {
     'ngrok-skip-browser-warning': '69420'
   }
@@ -231,7 +231,7 @@ function convertToJpg(fileName) {
   {!collapse &&<>
     <div className="p mt-3" style={{backgroundColor:"white",color:"black"}} onClick={()=>{
       navigate("/machinehealth")
-    }}><i class="fa-solid fa-screwdriver-wrench me-3"></i>Machine Health</div>
+    }}><i class="fa-solid fa-screwdriver-wrench me-3"></i>Magnify Video</div>
    {/* <div className="p"><i class="fa-solid fa-notes-medical me-3"></i>Human Health</div> */}
    <div className="p" onClick={()=>{
     navigate("/feedback");
@@ -276,7 +276,7 @@ function convertToJpg(fileName) {
             <div className='machinetitle'>
             <h1 style={{fontWeight:"800",fontSize:"3rem",color:"white"}}>
             <i class="fa-solid fa-screwdriver-wrench fa-5xl me-3"></i>
-            Maginify Video
+            Maginfy Video
             </h1>
             </div>
             <div className='mt-2'>
@@ -424,7 +424,7 @@ function convertToJpg(fileName) {
       
      
       <video  className="shadow mt-5" style={{width:90+"%",marginBottom:"0px",borderRadius:"10px",maxHeight:"300px"}} controls>
-  <source src="https://d9f0-2409-40d7-7-598-e4d1-9e10-abe6-878e.ngrok-free.app/uploads/uploads%5Cdownloaded_video_phase_magnified.mp4" type="video/mp4"/>
+  <source src={msrc} type="video/mp4"/>
   Your browser does not support the video tag.
 </video>'
 {/* <div   className="mb-3 px-2" style={{backgroundColor:"",height:"8vh",width:"90%",border:"0px solid black",display:"",justifyContent:"flex-start",alignItems:"center",marginLeft:"",fontSize:"21px",color:"white"}}>

@@ -21,7 +21,7 @@ function App() {
       <Routes>
     {/* <Uploadwidget></Uploadwidget> */}
     <Route exact path="/machinehealth" element={<Machinehealth ></Machinehealth>} />
-    <Route exact path="/" element={<Home></Home>} />
+    <Route exact path="/" element={<Machinehealth ></Machinehealth>} />
     <Route exact path="/signup" element={<Signup ></Signup>} />
     <Route exact path="/login" element={<Login></Login>} />
     <Route exact path="/feedback" element={<Feedback></Feedback>} />
