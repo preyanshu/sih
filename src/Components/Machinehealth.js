@@ -4,6 +4,7 @@ import LogViewer from './LogsViewer';
 import io from 'socket.io-client';
 
 const Machinehealth = () => {
+    var option="";
     const [mag,setmag]=useState(10);
     const ref = useRef();
   const ref2 = useRef();
@@ -21,19 +22,38 @@ const Machinehealth = () => {
   const [selectedOption, setSelectedOption] = useState("0");
 
   const handleSelectChange = (event) => {
+    // console.log(event.target.value);
+    console.log(selectedOption);
     setSelectedOption(event.target.value);
   };
  
 
-  const fetchData = async (src,technique,mode) => {
+  const fetchData = async (url,technique,mode) => {
     try {
+      // option=localStorage.getItem("option");
+      
+      
+      // if(option=="0"){
+      //   var technique="phase";
+        
+
+      // }
+      // else if(option=="1"){
+      //   var technique="eulerian"
+      //   var mode="1";
+      // }
+      // else if(option=="2"){
+      //   var technique="eulerian"
+      //   var mode="0";
+      // }
+      console.log(url,technique,mode);
       const response = await fetch('https://ad0b00ef-3f00-4cb3-acce-aa6c28cbd862-00-xykag7b1y2nk.picard.replit.dev:5000/magnify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: new URLSearchParams({
-          url: src,
+          url: url,
           technique: technique,
           mode: mode
          
@@ -46,7 +66,8 @@ const Machinehealth = () => {
 
       const data = await response.json();
       console.log(data);
-      setmsrc(data);
+      setmsrc(data.
+        video_url);
     } catch (error) {
        alert('Error fetching data');
     }
@@ -77,17 +98,19 @@ const Machinehealth = () => {
         if (r.event === 'success') {
 
           console.log(r.info);
+         
           setupdone(true);
           setsrc(r.info.url);
-          if(selectedOption==="0"){
-            fetchData(r.info.url,"phase");
-
+          option=localStorage.getItem("option");
+          console.log(option);
+          if(option=="0"){
+            fetchData(r.info.url,"phase","");
           }
-          else if(selectedOption==="1"){
-            fetchData(r.info.url,"eularian","1");
+          else if(option=="1"){
+            fetchData(r.info.url,"eulerian","1");
           }
-          else if(selectedOption==="2"){
-            fetchData(r.info.url,"eularian","0");
+          else if(option=="2"){
+            fetchData(r.info.url,"eulerian","0");
           }
 
 
@@ -98,7 +121,7 @@ const Machinehealth = () => {
   }, []);
 
   useEffect(() => {
-    const socket = io('https://2e94-2409-40d7-7-598-e4d1-9e10-abe6-878e.ngrok-free.app', {
+    const socket = io('https://d9f0-2409-40d7-7-598-e4d1-9e10-abe6-878e.ngrok-free.app', {
   extraHeaders: {
     'ngrok-skip-browser-warning': '69420'
   }
@@ -268,6 +291,7 @@ function convertToJpg(fileName) {
       :"5px"}}>
             <div style={{backgroundColor:"#CFE2FF",height:"75%",width:"90%",border:"0px solid black",display:"flex",justifyContent:"center",flexDirection:"column",border:"2px dotted white",borderRadius:10+"px",alignItems:"center"}}>
                 <button className="btn mt-5 btn-primary p-3 px-5 uploadbtn" onClick={()=>{
+                  localStorage.setItem("option",selectedOption);
                   ref2.current.open();
                 }}><h3><i class="fa-solid fa-upload fa-lg me-3"></i>Upload Video</h3></button>
                 <h5  className="mt-3"style={{fontSize:"19px"}}>
@@ -399,8 +423,8 @@ function convertToJpg(fileName) {
       <div className="my-3  shadow" style={{backgroundColor:"black",height:"",width:"50vw",border:"1px solid white",display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center",borderRadius:"10px"}} >
       
      
-      <video  className="shadow mt-5" style={{width:90+"%",marginBottom:"0px",borderRadius:"10px"}} controls>
-  <source src={src} type="video/mp4"/>
+      <video  className="shadow mt-5" style={{width:90+"%",marginBottom:"0px",borderRadius:"10px",maxHeight:"300px"}} controls>
+  <source src="https://d9f0-2409-40d7-7-598-e4d1-9e10-abe6-878e.ngrok-free.app/uploads/uploads%5Cdownloaded_video_phase_magnified.mp4" type="video/mp4"/>
   Your browser does not support the video tag.
 </video>'
 {/* <div   className="mb-3 px-2" style={{backgroundColor:"",height:"8vh",width:"90%",border:"0px solid black",display:"",justifyContent:"flex-start",alignItems:"center",marginLeft:"",fontSize:"21px",color:"white"}}>
